@@ -5,7 +5,7 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 
 // Require Click schema
-var Click = require("./models/click");
+var NYTimes = require("./models/NYTimes");
 
 // Create a new express app
 var app = express();

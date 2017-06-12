@@ -10,7 +10,7 @@ const NYTimesSchema = new Schema({
   title: {
     type: String,
     unique: true,
-  }
+  },
   link: String,
   comments: String,
   date: {
