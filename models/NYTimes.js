@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 // Then, we save the mongoose.Schema class as simply "Schema"
 const Schema = mongoose.Schema;
 
-// With our new Schema class, we instantiate an ExampleSchema object
 // This is where we decide how our data must look before we accept it in the server, and how to format it in mongoDB
 const NYTimesSchema = new Schema({
   title: {
