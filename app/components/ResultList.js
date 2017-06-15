@@ -6,13 +6,16 @@ import ListItem from './ListItem';
 class ResultList extends Component {
   render () {
     console.log(this.props)
+    const articlesArray = props.articles.map(article => {
+      return <ListeItem key={ articles.name } name={ article }
+    })
     return (
       <div className="Welcome">
         <ul>
-          <ListItem /> 
+          <ListItem />
         </ul>
       </div>
-    );        
+    );
   }
 }
 

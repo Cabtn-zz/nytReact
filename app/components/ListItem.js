@@ -1,11 +1,13 @@
 import React from 'react'
 
-const ListItem = (props) => {
+const ListItem = ({article}) => {
     return (
         <li>
-            <span>{props.name}</span>
+            <span>{article.name}</span>
             <br />
-            <span>{ props.link }</span>
+            <span>{ artile.link }</span>
+            <br />
+            <button>SAVE ME BABY ONE MORE TIME</button>
         </li>
     )
 };

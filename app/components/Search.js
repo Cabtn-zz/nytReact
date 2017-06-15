@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 class Search extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             term: '',
             startDate: '',
             endDate: '',
-        };     
+        };
     }
 
     submitSearch () {
@@ -17,18 +17,20 @@ class Search extends Component {
             startDate: this.state.startDate,
             endDate: this.state.endDate
         }
-        
-        //Props is not working
+
         this.props.onSubmit(searchParams.term, searchParams.startDate, searchParams.endDate);
-        let results = this.props.onSubmit(searchParams.term, searchParams.startDate, searchParams.endDate);
+        console.log("SEARCH FILE", json)
     }
     render () {
         return (
-            <div>
-                <input value={this.state.term} onChange={event => this.setState({ term: event.target.value })} />
-                <input value={this.state.startDate} placeholder="YYYYMMD" onChange={event => this.setState({ startDate: event.target.value })} />
-                <input value={this.state.endDate} placeholder="YYYYMMD" onChange={event => this.setState({ endDate: event.target.value })} />
-                <button onClick={ () => this.submitSearch() } />
+            <div className="jumbotron">
+                <input className="form-control" value={this.state.term} placeholder="Search Term" onChange={event => this.setState({ term: event.target.value })} />
+                <br />
+                <input className="form-control" value={this.state.startDate} placeholder="YYYYMMD" onChange={event => this.setState({ startDate: event.target.value })} />
+                <br />
+                <input className="form-control" value={this.state.endDate} placeholder="YYYYMMD" onChange={event => this.setState({ endDate: event.target.value })} />
+                <br />
+                <button className="btn btn-primary" onClick={ () => this.submitSearch() }> SHAKE SHAKE SHAKE SENORA </button>
             </div>
         );
     }
