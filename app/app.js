@@ -18,6 +18,7 @@ class App extends Component {
       search: false,
     }
     console.log("STATE", this.state)
+    window.savetoDB = this.savetoDB
   }
 
   nytSearch()  {
@@ -26,8 +27,8 @@ class App extends Component {
     .then(result => {
       return result.json();
     })
-    .then(json => {
-      this.addToState(json);
+    .then(obj => {
+      this.addToState(obj);
       console.log(this.state)
       console.log("articles",this.state.articles)
     })
@@ -38,13 +39,19 @@ class App extends Component {
     this.setState({search: true})
   }
 
-  savetoDB(obj) {
-    Articles.update({ "_id": req.body._id}, req.body, { upsert: true }, (err, saved) => {
-      if (err) {
-        console.log(err)
-      } else {
-        res.json(saved)
-      }
+  savetoDB(title, link) {
+    const url = 'http://localhost:3000/api/article';
+    const body = JSON.stringify({
+      title: title,
+      link: link,
+    });
+
+    fetch(url, {
+      method: "POST",
+      body: body,
+    })
+    .then(() => {
+      console.log("EUREKA")
     })
   }
 

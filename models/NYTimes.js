@@ -11,7 +11,6 @@ const NYTimesSchema = new Schema({
     unique: true,
   },
   link: String,
-  comments: String,
   date: {
     type: Date,
     default: Date.now
@@ -19,7 +18,7 @@ const NYTimesSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-const Articles = mongoose.model("NYTimes", NYTimesSchema);
+const Article = mongoose.model("NYTimes", NYTimesSchema);
 
 // Finally, we export the module, allowing server.js to hook into it with a require statement
-module.exports = Articles;
+module.exports = Article;
