@@ -19,7 +19,7 @@ const NYTimesSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-const NYTimes = mongoose.model("NYTimes", NYTimesSchema);
+const Articles = mongoose.model("NYTimes", NYTimesSchema);
 
 // Finally, we export the module, allowing server.js to hook into it with a require statement
-module.exports = NYTimes;
+module.exports = Articles;
