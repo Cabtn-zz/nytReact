@@ -6,7 +6,7 @@ class ResultList extends Component {
     console.log(this.props.articles.response)
     const articlesArray = this.props.articles.response.docs.map(article => {
       console.log(article);
-      return <ListItem key={article._id} article={ article } />
+      return <ListItem key={article._id} article={ article } saveArticle={ this.props.save } />
     })
     return (
       <div className="Welcome">

@@ -51,7 +51,7 @@ class App extends Component {
       body: body,
     })
     .then(() => {
-      console.log("EUREKA")
+      console.log("Saved")
     })
   }
 
@@ -69,7 +69,7 @@ class App extends Component {
           </div>
           {
             (this.state.search)
-            ?<ResultList articles={ this.state.articles } />
+            ?<ResultList articles={ this.state.articles } save={ this.savetoDB } />
             : "Search Something!"
           }
         </div>
