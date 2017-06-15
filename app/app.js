@@ -63,7 +63,7 @@ class App extends Component {
           {
             (this.state.search)
             ?<ResultList articles={ this.state.articles } />
-            : "TEST"
+            : "Search Something!"
           }
         </div>
       );
