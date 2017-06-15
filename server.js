@@ -3,7 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-const axios = require("axios")
+
 
 // Require Click schema
 var NYTimes = require("./models/NYTimes");
@@ -24,27 +24,14 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-//Setting up the mongo database
-const databaseUrl = "mongo_nyt";
-const collections = ["articles"];
+// MongoDB configuration (Change this URL to your own DB)
+mongoose.connect("mongodb://admin:codingrocks@ds023674.mlab.com:23674/heroku_5ql1blnl");
+var db = mongoose.connection;
 
-mongoose.Promise = Promise;
-
-// Use morgan and body parser with our app
-app.use(logger("dev"));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-
-mongoose.connect("mongodb://localhost/mongo_nyt");
-
-const db = mongoose.connection;
-
-db.on("error", function(error) {
-  console.log("Mongoose Error: ", error);
+db.on("error", function(err) {
+  console.log("Mongoose Error: ", err);
 });
 
-// Once logged in to the db through mongoose, log a success message
 db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
@@ -74,11 +61,9 @@ app.get("/api", function(req, res) {
 
 // This is the route we will send POST requests to save each click.
 // We will call this route the moment the "click" or "reset" button is pressed.
-const saveArticle = (save) => {
-  return axios.post("/api", save)
-}
+app.post("/api", function(req, res) {
 
-
+  var clicks = parseInt(req.body.clicks);
 
   // Note how this route utilizes the findOneAndUpdate function to update the clickCount
   // { upsert: true } is an optional object we can pass into the findOneAndUpdate method

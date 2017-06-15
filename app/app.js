@@ -4,8 +4,7 @@ import ListItem from './components/ListItem';
 import ResultList from './components/ResultList'
 // import Saved from './components/Saved';
 import Search from './components/Search';
-import axios from 'axios'
-import Articles from '../models/NYTimes'
+
 
 class App extends Component {
   constructor(props) {
@@ -48,7 +47,6 @@ class App extends Component {
       }
     })
   }
-
 
   render () {
       return (
