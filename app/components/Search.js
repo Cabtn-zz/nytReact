@@ -17,9 +17,8 @@ class Search extends Component {
             startDate: this.state.startDate,
             endDate: this.state.endDate
         }
-
+        console.log("SEARCH", searchParams)
         this.props.onSubmit(searchParams.term, searchParams.startDate, searchParams.endDate);
-        console.log("SEARCH FILE", json)
     }
     render () {
         return (
