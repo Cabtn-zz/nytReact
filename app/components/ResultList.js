@@ -9,7 +9,7 @@ class ResultList extends Component {
       return <ListItem key={article._id} article={ article } saveArticle={ this.props.save } />
     })
     return (
-      <div className="Welcome">
+      <div><h1>Search Results</h1>
         <ul>
           {articlesArray}
         </ul>

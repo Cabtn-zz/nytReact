@@ -10,7 +10,7 @@ class SavedList extends Component {
       return <SavedItem key={article._id} article={ article } deleteArticle= { this.props.delete } />
     })
     return (
-      <div className="Welcome">
+      <div><h1>Saved Articles</h1>
         <ul>
           {savedArray}
         </ul>
