@@ -15,6 +15,7 @@ class App extends Component {
       startDate: "",
       endDate: "",
       articles: [],
+      savedArticles: [],
       search: false,
     }
     console.log("STATE", this.state)
@@ -55,21 +56,32 @@ class App extends Component {
     })
   }
 
-  // pullSavedArticles(obj) {
-  //   const url = "/api/article"
-  // }
+  pullSavedArticles(obj) {
+    const url = "/api/article"
+    fetch(url)
+    .then(result => {
+      return result.json();
+    })
+    .then(obj => {
+      this.setState({savedArticles: obj});
+      console.log(this.state.savedArticles)
+    });
+  }
 
   render () {
       return (
         <div className="header"><h1> Welcome to the NewerYork Times</h1>
           <div className="jumbotron">
+              <h3>Search Term</h3>
               <input className="form-control" value={this.state.term} placeholder="Search Term" onChange={event => this.setState({ term: event.target.value })} />
               <br />
+              <h3>Start Date</h3>
               <input className="form-control" value={this.state.startDate} placeholder="YYYYMMD" onChange={event => this.setState({ startDate: event.target.value })} />
               <br />
+              <h3>End Date</h3>
               <input className="form-control" value={this.state.endDate} placeholder="YYYYMMD" onChange={event => this.setState({ endDate: event.target.value })} />
               <br />
-              <button className="btn btn-primary" onClick={() => this.nytSearch() }> SHAKE SHAKE SHAKE SENORA </button>
+              <button className="btn btn-primary" onClick={() => this.nytSearch() }> Search Articles </button>
           </div>
           {
             (this.state.search)
