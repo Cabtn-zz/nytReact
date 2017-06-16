@@ -43,19 +43,18 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-// app.get("/api", function(req, res) {
-
-//   // This GET request will search for the latest clickCount
-//   Click.find({}).exec(function(err, doc) {
-
-//     if (err) {
-//       console.log(err);
-//     }
-//     else {
-//       res.send(doc);
-//     }
-//   });
-// });
+app.get("/api/article", function(req, res) {
+  console.log("THIS IS WORKING")
+  // This GET request will search for the latest clickCount
+  Articles.find({}).exec(function(err, doc) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(doc);
+    }
+  });
+});
 
 app.post("/api/article", function(req, res) {
   const details = JSON.parse(req.body);

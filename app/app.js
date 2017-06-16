@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ListItem from './components/ListItem';
 import ResultList from './components/ResultList'
-// import Saved from './components/Saved';
-import Search from './components/Search';
-
+import Saved from './components/Saved';
 
 class App extends Component {
   constructor(props) {
@@ -18,8 +16,6 @@ class App extends Component {
       savedArticles: [],
       search: false,
     }
-    console.log("STATE", this.state)
-    window.savetoDB = this.savetoDB
   }
 
   nytSearch()  {
@@ -30,7 +26,6 @@ class App extends Component {
     })
     .then(obj => {
       this.addToState(obj);
-      console.log(this.state)
       console.log("articles",this.state.articles)
     })
 }
@@ -41,7 +36,7 @@ class App extends Component {
   }
 
   savetoDB(title, link) {
-    const url = 'http://localhost:3000/api/article';
+    const url = '/api/article';
     const body = JSON.stringify({
       title: title,
       link: link,
@@ -56,16 +51,31 @@ class App extends Component {
     })
   }
 
-  pullSavedArticles(obj) {
+  pullSavedArticles() {
     const url = "/api/article"
     fetch(url)
     .then(result => {
       return result.json();
     })
-    .then(obj => {
-      this.setState({savedArticles: obj});
-      console.log(this.state.savedArticles)
+    .then((obj,err) => {
+        if (err){
+          console.log("You have an erro",err);
+        }
+        else {
+          this.setState({savedArticles: obj});
+          console.log(this.state.savedArticles)
+      }
     });
+  }
+
+  deleteArticle(id) {
+    console.log("DELETING")
+    console.log("ID", id)
+    Articles.findByIdAndRemove({id})
+  }
+
+  componentWillMount() {
+    this.pullSavedArticles();
   }
 
   render () {
@@ -86,7 +96,7 @@ class App extends Component {
           {
             (this.state.search)
             ?<ResultList articles={ this.state.articles } save={ this.savetoDB } />
-            : "Search Something!"
+          :<Saved articles={ this.state.savedArticles} delete={ this.state.deleteArticle } />
           }
         </div>
       );
