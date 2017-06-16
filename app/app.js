@@ -55,6 +55,10 @@ class App extends Component {
     })
   }
 
+  // pullSavedArticles(obj) {
+  //   const url = "/api/article"
+  // }
+
   render () {
       return (
         <div className="header"><h1> Welcome to the NewerYork Times</h1>

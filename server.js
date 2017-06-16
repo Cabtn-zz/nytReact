@@ -1,17 +1,15 @@
 // Include Server Dependencies
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 
-
-// Require Click schema
-var NYTimes = require("./models/NYTimes");
+const Articles = require("./models/NYTimes");
 
 // Create a new express app
-var app = express();
+const app = express();
 // Sets an initial port. We'll use this later in our listener
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -24,9 +22,11 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
+//Setting up mongo database
+
 // MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://admin:codingrocks@ds023674.mlab.com:23674/heroku_5ql1blnl");
-var db = mongoose.connection;
+mongoose.connect("mongodb://localhost:/nytreact");
+const db = mongoose.connection;
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
@@ -43,8 +43,6 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-// // This is the route we will send GET requests to retrieve our most recent click data.
-// // We will call this route the moment our page gets rendered
 // app.get("/api", function(req, res) {
 
 //   // This GET request will search for the latest clickCount
@@ -61,11 +59,10 @@ app.get("/", function(req, res) {
 
 app.post("/api/article", function(req, res) {
   const details = JSON.parse(req.body);
-  console.log(detail)
+  Articles.create(details);
+  console.log("DETAILS", details)
   res.send();
 });
-
-
 
 // -------------------------------------------------
 
