@@ -1,7 +1,6 @@
 import React from 'react'
 
 const SavedItem = (props) => {
-  console.log("HERE",{props})
     return (
         <div>
             <li className="list-group-item">

@@ -59,7 +59,7 @@ class App extends Component {
     })
     .then((obj,err) => {
         if (err){
-          console.log("You have an erro",err);
+          console.log("You have an error",err);
         }
         else {
           this.setState({savedArticles: obj});
@@ -81,7 +81,13 @@ class App extends Component {
   render () {
       return (
         <div className="header"><h1> Welcome to the NewerYork Times</h1>
-          <div className="jumbotron">
+        {
+          (this.state.search)
+          ?<div>
+            <ResultList articles={ this.state.articles } save={ this.savetoDB } />
+            <Saved articles={ this.state.savedArticles} delete={ this.state.deleteArticle } />
+          </div>
+          :<div className="jumbotron">
               <h3>Search Term</h3>
               <input className="form-control" value={this.state.term} placeholder="Search Term" onChange={event => this.setState({ term: event.target.value })} />
               <br />
@@ -93,10 +99,7 @@ class App extends Component {
               <br />
               <button className="btn btn-primary" onClick={() => this.nytSearch() }> Search Articles </button>
           </div>
-          {
-            (this.state.search)
-            ?<ResultList articles={ this.state.articles } save={ this.savetoDB } />
-          :<Saved articles={ this.state.savedArticles} delete={ this.state.deleteArticle } />
+
           }
         </div>
       );

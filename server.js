@@ -44,8 +44,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/api/article", function(req, res) {
-  console.log("THIS IS WORKING")
-  // This GET request will search for the latest clickCount
+  //Show the saved data
   Articles.find({}).exec(function(err, doc) {
     if (err) {
       console.log(err);
